@@ -1,22 +1,30 @@
-var main=document.querySelector('main');
-var btn=document.querySelector('button');
+btn=document.querySelector('button')
+h2=document.querySelector('h2')
+inner=document.querySelector('#inner')
+box=document.querySelector('#box')
+var grow=0;
+num=50+Math.floor(Math.random()*50)
+console.log(num)
+
 
 btn.addEventListener('click',function(){
-    var box=document.createElement('div');
-    var x=Math.random()*100;
-    var y=Math.random()*100;
-    var r=Math.random()*360;
-    var c1=Math.floor(Math.random()*100);
-    var c2=Math.floor(Math.random()*100);
-    var c3=Math.floor(Math.random()*100);
+    btn.style.pointerEvents='none';
+    console.log("hello");
+    var int =setInterval(function(){
+        grow++;
+        h2.innerHTML=grow+'%';
+        inner.style.width=grow+'%';
 
-    box.style.height='100px';
-    box.style.width='100px';
-    box.style.backgroundColor='red';
-    box.style.position='absolute';
-    box.style.left=x+'%';
-    box.style.rotate=r+'deg';
-    box.style.top=y+'%';
-    box.style.backgroundColor=`rgb(${c1},${c2},${c3})`
-    main.appendChild(box);
+    },num)
+    setTimeout(() => {
+       clearInterval(int); 
+       btn.innerHTML="Downloaded";
+       btn.style.opacity=0.5;
+       h3=document.createElement('h3');
+        h3.innerHTML="Downloaded in "+(num%10)+" seconds";
+        h3.style.fontSize='20px'
+        h3.style.textAlign='center';
+        box.appendChild(h3);
+    }, num*100);
+    
 })
